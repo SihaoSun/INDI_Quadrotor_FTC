@@ -1,2 +1,0 @@
-  URControl_att_indi_simple.cpp
-
