@@ -36,9 +36,14 @@ if any(tmp)
     fusColor = varargin{find(tmp)+1}; 
 end
 
-tmp = strncmpi(varargin,'prop',4); 
+tmp = strncmpi(varargin,'fail',4); 
 if any(tmp)
     failure_id = varargin{find(tmp)+1}; 
+end
+
+tmp = strncmpi(varargin,'failtype',5); 
+if any(tmp)
+    failure_drf = varargin{find(tmp)+1}; 
 end
 
 tmp = strcmpi(varargin,'scale');  
@@ -125,17 +130,23 @@ h(4) = surface(-xcf*fusLength+x,y+ycf,z+zcf*zscale,...
     'edgecolor',edgeColor);
 
 % Propellers: 
+if ~ismember(failure_id, [0,1,2,3,4])
+    failiure_id = 0;
+end
+
+if failure_drf
+    if failure_id == 1 || failure_id == 3
+       failure_id  = [1 3];
+    elseif failure_id == 2 || failure_id == 4
+       failure_id = [2 4];
+    end    
+end
+
 if failure_id == 0
     failure_id = [];
 end
-if failure_id == 5
-   failure_id  = [1 3];
-end
-if failure_id == 6
-    failure_id = [2 4];
-end
 
-propColor = [[1 0 0];[0 1 0];[0 0 1];propColor];
+propColor = [propColor;propColor;propColor;propColor];
 % propColor(failure_id,:) = propColor(failure_id,:)+[0 1 1];
 propColor(failure_id,:) = repmat([1 1 1],length(failure_id),1);
 xp = .4*wingWidth*sin(0:.2:2*pi); 
@@ -167,7 +178,7 @@ ylabel('y [m]')
 zlabel('z [m]')
 grid on;
 
-view([-30 10]); %30
+view([-30 15]); %30
 % axis(limits);% tight equal
 lighting flat%gouraud
     

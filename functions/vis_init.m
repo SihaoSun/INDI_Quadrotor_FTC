@@ -7,7 +7,7 @@ ax = axes('XLim',[-5,5],'YLim',[-5,5],'ZLim',[-5,5]);
 %       [-1,-1.5,-1.5,-1,1,1.5,1.5,1,-1]); hold on;
   
 xlim([-2.5,1.5]); ylim([-2,2]); zlim([-2,2])
-[h_animation] = quad_figure(0,0,0,'roll',0,'pitch',0,'yaw',0,'scale',0.03*3,'prop',par.fail_id);
+[h_animation] = quad_figure(0,0,0,'roll',0,'pitch',0,'yaw',0,'scale',0.03*3,'fail', par.fail_id, 'failtype', par.DRF_enable);
 set(gca, 'Zdir', 'reverse');
 set(gca, 'Ydir', 'reverse');
 set(gca, 'Projection','perspective');
