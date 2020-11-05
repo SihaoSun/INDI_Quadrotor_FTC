@@ -1,6 +1,9 @@
 # INDI_Quadrotor_FTC
 This is a minimal repository containing the Matlab / Simulink file, to simulate a quadrotor subjected to single / double rotor failures, using the incremental-nonlinear-dynamic-inversion controller proposed in
 
+S. Sun, X. Wang, Q. Chu and C. d. Visser, "Incremental Nonlinear Fault-Tolerant Control of a Quadrotor With Complete Loss of Two Opposing Rotors," in IEEE Transactions on Robotics, doi: 10.1109/TRO.2020.3010626.
+
+If you use this code in an academic context, please cite
 ```
 @ARTICLE{SunDRF2020,
   author={S. {Sun} and X. {Wang} and Q. {Chu} and C. d. {Visser}},
@@ -12,8 +15,6 @@ This is a minimal repository containing the Matlab / Simulink file, to simulate 
   pages={1-15},
   doi={10.1109/TRO.2020.3010626}}
 ```
-If you use this code in an academic context, please use the above citation.
-
 
 ## File structure
 run.m script is the branch to run the simulation, after loading necessary simulation and control parameters defined in simParams.m & controlParams.m respectively. The high-level simulation archetecture is given in frame.slx file, where one can design the position + yaw command. The flight controller is given in controls.slx, and the 6Dof simulator is given in droneSim.slx file. visualize.slx contains the visualization block. 
