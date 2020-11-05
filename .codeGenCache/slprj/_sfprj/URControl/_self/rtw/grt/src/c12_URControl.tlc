@@ -1,0 +1,39 @@
+%implements "chartSource" "C"
+%function ChartConfig(block, system) void
+  %createrecord chartConfiguration { ...
+          executeAtInitialization  0 ...
+  }
+  %return chartConfiguration
+%endfunction
+%function ChartDataMap(block, system) void
+  %createrecord ChartDataElements {\
+    NumChartData   3 \
+    ChartDataDefaults {\
+      RecordType   "ChartData"\
+      Dimensions   []\
+      IsTestPoint  0\
+    }\
+    ChartData {\
+      Name         "fallCount"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "/home/sihao/src/monorepo/simulink_model/Control/URControl/UROverrides.m:103-112"\
+    }\
+    ChartData {\
+      Name         "thrown"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "/home/sihao/src/monorepo/simulink_model/Control/URControl/UROverrides.m:167-173"\
+    }\
+    ChartData {\
+      Name         "flipTime"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "/home/sihao/src/monorepo/simulink_model/Control/URControl/UROverrides.m:223-231"\
+    }\
+  }
+  %return ChartDataElements
+%endfunction
