@@ -1,7 +1,7 @@
 # INDI_Quadrotor_FTC
 This is a minimal repository containing the Matlab / Simulink file, to simulate a quadrotor subjected to single / double rotor failures, using the incremental-nonlinear-dynamic-inversion controller proposed in
 
-S. Sun, X. Wang, Q. Chu and C. d. Visser, "Incremental Nonlinear Fault-Tolerant Control of a Quadrotor With Complete Loss of Two Opposing Rotors," in IEEE Transactions on Robotics, doi: 10.1109/TRO.2020.3010626.
+*S. Sun, X. Wang, Q. Chu and C. d. Visser, **"Incremental Nonlinear Fault-Tolerant Control of a Quadrotor With Complete Loss of Two Opposing Rotors,"** in IEEE Transactions on Robotics, doi: 10.1109/TRO.2020.3010626.*
 
 If you use this code in an academic context, please cite
 ```
