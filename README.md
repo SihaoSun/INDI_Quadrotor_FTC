@@ -17,7 +17,7 @@ If you use this code in an academic context, please cite
 ```
 
 ## File structure
-run.m script is the branch to run the simulation, after loading necessary simulation and control parameters defined in simParams.m & controlParams.m respectively. The high-level simulation archetecture is given in frame.slx file, where one can design the position + yaw command. The flight controller is given in controls.slx, and the 6Dof simulator is given in droneSim.slx file. visualize.slx contains the visualization block. 
+*run.m* is the main script to run the simulation, after loading necessary simulation and control parameters defined in *simParams.m* & *controlParams.m* respectively. The high-level simulation archetecture is given in *frame.slx* file, where one can design the position + yaw command. The flight controller is given in *controls.slx*, and the 6Dof simulator is given in *droneSim.slx* file. visualize.slx contains the visualization block. 
 
 ## How to test and compare with the INDI approach?
 The innovation of this research, is to solve quadrotor fault-tolerant control problem using the Incremental-Nonlinear-Dynamic-Inversion (INDI) method. One can simply test it by directly running the simulation (run run.m file). 
