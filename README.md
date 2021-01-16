@@ -1,3 +1,10 @@
+# Requirements
+Matlab / Simulink 2020a
+#### Toolbox
+Communication Toolbox
+DSP System Toolbox
+Robotics Toolbox
+
 # INDI_Quadrotor_FTC
 This is a minimal repository containing the Matlab / Simulink file, to simulate a quadrotor subjected to single / double rotor failures, using the incremental-nonlinear-dynamic-inversion controller proposed in
 
@@ -34,5 +41,4 @@ Input command can be designed in the frame.slx file.
 ### Test your own controller
 To test your own controller with the given simulation, simply replace the content in controls.slx.
 
-# Tested environment
-Matlab / Simulink 2020a
+
