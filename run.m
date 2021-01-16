@@ -1,6 +1,6 @@
 clear all
 
-addpath(genpath('Bebop2Model'));
+addpath(genpath('Model'));
 addpath('functions');
 addpath('INDI_FTC');
 addpath('sim_modules');

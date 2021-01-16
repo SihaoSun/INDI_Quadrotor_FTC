@@ -1,8 +1,10 @@
 %% Simulation parameters
 
 simVars.freq = 1000;        % simulation frequency
-simVars.aeroModel = 1;      % aerodynamic model 
+simVars.aeroModel = 2;      % aerodynamic model 
                             % 0 = simple aero model, 1 = complex model
+                            % 2 = hybrid aero model
+                            
 simVars.g = 9.8124;         % gravity in Delft
 simVars.pos0 = [0,0,0];     % initial position, [m]
 simVars.vel0 = [0,0,0];     % initial velocity, [m/s]
@@ -28,7 +30,7 @@ simVars.sensor.omega_bias = add_noise*[0.0, 0.0, 0.0];
 simVars.sensor.acc_bias = add_noise*[0.0,-0.0,0.0];
 
 % visualization
-simVars.visFreq = 20;   % visualization frequency
+simVars.visFreq = 50;   % visualization frequency
 simVars.track = true;   % track the quadrotor for visualization?
 
 % drone related parameters for simulation

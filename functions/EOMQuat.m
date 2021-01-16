@@ -70,4 +70,10 @@ simBusOut.forcesB = bodyForces;
 simBusOut.moments = quatRotInv(q,bodyMoments);
 simBusOut.momentsB = bodyMoments;
 
+simBusOut.delta_ar = 0;
+simBusOut.delta_al = 0;
+
+simBusOut.Fwing = [FM.Fwx, FM.Fwy, FM.Fwz];
+simBusOut.Mwing = [FM.Mwx, FM.Mwy, FM.Mwz];
+
 end

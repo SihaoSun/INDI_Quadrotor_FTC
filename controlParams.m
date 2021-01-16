@@ -1,6 +1,6 @@
 %% Controller related Parameters
 % Controls
-par.freq = 500; % control frequency
+par.freq = 200; % control frequency
 
 %
 %   (1)<-- b -->(2)
@@ -11,8 +11,8 @@ par.freq = 500; % control frequency
 %   (4)         (3)
 
 par.fail_id = [3];      % index of the failured propeller
-par.DRF_enable = 1;     % failure of two diagonal rotors?
-par.fail_time = 0.0;    % moment failiure occurs
+par.DRF_enable = 0;     % failure of two diagonal rotors?
+par.fail_time = 2.0;    % moment failiure occurs
 
 % drone parameters
 par.b = 0.1150;     % [m]
@@ -32,7 +32,7 @@ par.w_min = 0;
 par.chi = 105;          % output scheduling parameter, [deg].
 par.pos_z_p_gain = 5;   % altitude control pd gains
 par.pos_z_d_gain = 3;
-par.axis_tilt = 0.0;    % primary axis tilting param, 0 ~ 0.2,  
+par.axis_tilt = 0.2;    % primary axis tilting param, 0 ~ 0.2,  
                         % must be 0 for double rotor failure cases
 
 par.att_p_gain = 200;   % attitude control pd gains 

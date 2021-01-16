@@ -43,6 +43,12 @@ dummy.forcesB = [0,0,0];
 dummy.moments = [0,0,0];
 dummy.momentsB = [0,0,0];
 
+dummy.delta_ar = 0;
+dummy.delta_al = 0;
+
+dummy.Fwing = [0,0,0];
+dummy.Mwing = [0,0,0];
+
 Simulink.Bus.createObject(dummy); 
 simBus = slBus1; clearvars slBus1;
 
@@ -65,6 +71,12 @@ dummy.Mz = 0;
 dummy.MxGyro = 0;
 dummy.MyGyro = 0;
 dummy.MzGyro = 0;
+dummy.Fwx = 0;
+dummy.Fwy = 0;
+dummy.Fwz = 0;
+dummy.Mwx = 0;
+dummy.Mwy = 0;
+dummy.Mwz = 0;
 Simulink.Bus.createObject(dummy); 
 FMBus = slBus1; clearvars slBus1;
 
