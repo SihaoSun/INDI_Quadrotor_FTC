@@ -3,6 +3,7 @@ clear all
 addpath(genpath('Model'));
 addpath('functions');
 addpath('INDI_FTC');
+addpath('LQR');
 addpath('sim_modules');
 
 %%

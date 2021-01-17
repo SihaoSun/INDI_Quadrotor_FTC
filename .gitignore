@@ -2,3 +2,5 @@
 *.slxc
 
 **/slprj
+
+*.m~
