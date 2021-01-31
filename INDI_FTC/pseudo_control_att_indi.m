@@ -22,13 +22,12 @@ end
 m   = par.mass;
 g   = par.g;
 
-R_IB = [cos(psi)*cos(theta) , cos(psi)*sin(theta)*sin(phi)-sin(psi)*cos(phi), cos(psi)*sin(theta)*cos(phi)+sin(psi)*sin(phi);
-        sin(psi)*cos(theta) , sin(psi)*sin(theta)*sin(phi)+cos(psi)*cos(phi), sin(psi)*sin(theta)*cos(phi)-cos(psi)*sin(phi);
-        -sin(theta)          , cos(theta)*sin(phi)                          , cos(theta)*cos(phi)                          ];
-    
+R_IB = euler2Rot(phi, theta, psi);
+
 h = R_IB\n_des;
 h1 = h(1); h2 = h(2);
 
+lambda = R_IB\n_des;
 
 Y = [h1-nx; h2-ny];
 dY = [-h(3)*q + h(2)*r + lambda(1);

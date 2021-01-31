@@ -47,11 +47,11 @@ par.YRC_Kp_psi = 5.0;
 
 % position control
 par.position_maxAngle = 30/57.3;    % maximum thrust tilt angle [rad]  
-par.position_Kp_pos = [1.5, 1.5, 1.5];  % position control gains
+par.position_Kp_pos = 0*[1.5, 1.5, 1.5];  % position control gains
 par.position_maxVel = 10;           % maximum velocity
 par.position_intLim = 5.0; 
-par.position_Ki_vel = [1.0, 1.0, 1.0];  % velocity gains
-par.position_Kp_vel = [2.0, 2.0, 2.0];
+par.position_Ki_vel = 0*[1.0, 1.0, 1.0];  % velocity gains
+par.position_Kp_vel = 0*[2.0, 2.0, 2.0];
 
 %% LQR 
 lqrParams;
