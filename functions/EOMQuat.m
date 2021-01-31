@@ -21,6 +21,7 @@ acc = [0,0,sim.g] + forces/sim.drone.mass;
 
 % rotate drone
 bodyMoments = [FM.Mx - FM.MxGyro, FM.My - FM.MyGyro, FM.Mz - FM.MzGyro];
+% bodyMoments = [FM.Mx, FM.My, FM.Mz ];
 
 % info: rotVelB = [p,q,r]
 pr = rotVelB(1);
@@ -29,9 +30,9 @@ rr = rotVelB(3);
 Ix = sim.drone.Iv(1,1);
 Iy = sim.drone.Iv(2,2);
 Iz = sim.drone.Iv(3,3);
-rotAccB = [(qr*rr*(Iy-Iz) + FM.Mx - FM.MxGyro)/Ix;
-          (pr*rr*(Iz-Ix) + FM.My - FM.MyGyro)/Iy;
-          (pr*qr*(Ix-Iy) + FM.Mz - FM.MzGyro)/Iz];
+rotAccB = [(qr*rr*(Iy-Iz) + bodyMoments(1))/Ix;
+          (pr*rr*(Iz-Ix) + bodyMoments(2))/Iy;
+          (pr*qr*(Ix-Iy) + bodyMoments(3))/Iz];
 rotAccB = awgn(rotAccB',sim.rotAccNoise);
 
 qDot = 1/2*quatmultiply(q,[0, rotVelB]);

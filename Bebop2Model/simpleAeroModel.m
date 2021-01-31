@@ -12,6 +12,7 @@ Mc(2) = sim.drone.l*sum(sim.aero.k0.*[w(1)^2, w(2)^2, -w(3)^2, -w(4)^2]);
 Mc(3) = sim.drone.signr*sum(sim.aero.t0.*[-w(1)^2, w(2)^2, -w(3)^2, w(4)^2]);
 
 MDrag = -sign(simBusIn.omegaB).*sim.aero.rotDrag.*(simBusIn.omegaB.^2);
+% MDrag = [0, 0, sim.aero.dr * simBusIn.omegaB(3)];
 
 M = Mc + MDrag;
 

@@ -1,6 +1,4 @@
-function [state] = UREstimators(sensors, state, fail_id)
-
-persistent failProt; if isempty(failProt); failProt = 0; end
+function [state] = UREstimators(sensors, fail_id, state)
 
 state.acc = sensors.acc;
 state.vel = sensors.vel;
@@ -20,11 +18,9 @@ phi = state.att(1);
 theta = state.att(2);
 psi = state.att(3);
 
-R_IB = [cos(theta)*cos(psi)                             , cos(theta)*sin(psi)                               , -sin(theta);
-        sin(phi)*sin(theta)*cos(psi)-cos(phi)*sin(psi)  , sin(phi)*sin(theta)*sin(psi)+cos(phi)*cos(psi)    , sin(phi)*cos(theta);
-        cos(phi)*sin(theta)*cos(psi)+sin(phi)*sin(psi)  , cos(phi)*sin(theta)*sin(psi)-sin(phi)*cos(psi)    , cos(phi)*cos(theta)];    
+R_IB = euler2Rot(phi,theta,psi);
 
-state.n = (R_IB'*[0;0;-1])'; % describes the primary axis in the inertial frame
+state.n = (R_IB*[0;0;-1])'; % describes the primary axis in the inertial frame
   
 % FMax = par.w_max^2*par.k0*ones(1,4);
 % FMin = par.w_min^2*par.k0*ones(1,4);
