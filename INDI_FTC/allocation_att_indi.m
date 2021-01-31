@@ -65,7 +65,7 @@ end
 % calc u
 dU = pinv(G)*(nu-ddy0);
 
-Y = (nu-ddy0);
+Y = ddy0;
 
 U = U0 + dU;
 if fail_flag > 0

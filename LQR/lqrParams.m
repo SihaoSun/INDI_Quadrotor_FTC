@@ -1,7 +1,6 @@
 % set Q R values for LQR and calculate lqr gains
 
-R_xy_uv = inv([par.l, par.l; -par.b, par.b]);
-par.lqr.R_xy_uv = R_xy_uv/(norm(R_xy_uv));
+par.lqr.R_xy_uv = par.R_xy_uv;
 par.lqr.Iu = sqrt(par.Ix^2 + par.Iy^2);
 par.lqr.Iv = sqrt(par.Ix^2 + par.Iy^2);
 par.lqr.s  = sqrt(par.l^2 + par.b^2);
