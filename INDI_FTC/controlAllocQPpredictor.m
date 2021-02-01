@@ -1,4 +1,4 @@
-function [output,y_state,iter,opt] = controlAllocQPpredictor(refStruct, state, FMax, FMin, h0, par)
+function [output,y_state,iter,opt,y] = controlAllocQPpredictor(refStruct, state, FMax, FMin, h0, par)
 persistent x_last;
 
 y_state = zeros(1,4);
@@ -118,7 +118,14 @@ B = [umax;
  
 x0 = x_last;
 maxItr = par.qp.maxIter;
-[x,~,iter,opt] = QP_activeSet(H,f,A,B,x0,maxItr);
+[x,~,iter,opt,y] = QP_activeSet(H,f,A,B,x0,maxItr);
+
+%% matlab quadprog
+% options = optimoptions('quadprog','Algorithm','active-set');
+% [x,y,opt,output] = quadprog(H,f,A,B,[],[],[],[],x0,options);
+% iter = output.iterations;
+%%
+y = nu1^2 * nu1Gain + nu2^2*nu2Gain + nuz^2*nuzGain + y;
 
 if opt ~=1
     x = x_last*0.99;
@@ -127,4 +134,15 @@ x_last = x;
 
 output = x(1:4);
 
+if state.t > 0.2
+   state.t = 0.2; 
+%    nu = [nu1; nu2; nuz; nur];
+%    W = diag([nu1Gain,nu2Gain,nuzGain,nurGain]);
+%    u = [x(1) x(2) x(3) x(4)]';
+%    G = [Gnu1;Gnu2;Gz;Gr];
+%    (nu - G*u)' * W * (nu-G*u)
+%    0.5*x'*H*x + f'*x + nu1^2*nu1Gain + nu2^2*nu2Gain + nuz^2*nuzGain + nur^2*nurGain
+%    x(4) = 1.6;
+%    0.5*x'*H*x + f'*x + nu1^2*nu1Gain + nu2^2*nu2Gain + nuz^2*nuzGain + nur^2*nurGain   
+end
 end

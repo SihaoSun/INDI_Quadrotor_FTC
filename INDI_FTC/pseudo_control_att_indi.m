@@ -27,14 +27,14 @@ R_IB = euler2Rot(phi, theta, psi);
 h = R_IB\n_des;
 h1 = h(1); h2 = h(2);
 
-lambda = R_IB\n_des;
+lambda = R_IB\lambda;
 
 Y = [h1-nx; h2-ny];
 dY = [-h(3)*q + h(2)*r + lambda(1);
        h(3)*p - h(1)*r + lambda(2)];
 
-Y = [cos(chi) sin(chi); -sin(chi) cos(chi)] * Y;
-dY = [cos(chi) sin(chi); -sin(chi) cos(chi)] * dY;
+% Y = [cos(chi) sin(chi); -sin(chi) cos(chi)] * Y;
+% dY = [cos(chi) sin(chi); -sin(chi) cos(chi)] * dY;
    
 kpz = par.pos_z_p_gain;
 kdz = par.pos_z_d_gain;

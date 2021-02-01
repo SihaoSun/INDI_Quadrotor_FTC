@@ -1,7 +1,7 @@
-function [U, Y, dU, optimal]  =  allocation_qpindi(state, nu, ddY, h0, zdd, U0, rdot, par)
+function [U, Y, dU, opt]  =  allocation_qpindi(state, nu, ddY, h0, zdd, U0, rdot, par)
 
 persistent dU_last; if isempty(dU_last); dU_last = [0,0,0,0]'; end
-
+opt = zeros(1,2);
 %% Solve the QR problem
 fail_flag = state.fail_id;
 
@@ -20,7 +20,7 @@ refStruct.nu1 = nu(2) - ddY(1);
 refStruct.nu2 = nu(3) - ddY(2);
 refStruct.nur = nu(4) - rdot;
 
-[x,~,~,optimal] = controlAllocQPpredictor(refStruct, state, dFMax, dFMin, h0, par);
+[x,~,~,optimal,y] = controlAllocQPpredictor(refStruct, state, dFMax, dFMin, h0, par);
 
 if optimal % if the solution did not converge, use previous solution
     dU = x / par.k0;
@@ -34,6 +34,8 @@ U = U0 + dU;
 dU = dU * par.k0;
 % Y = [zdd, ddY(1), ddY(2), rdot]';
 Y = [dFMax, dFMin];
+opt(1) = optimal;
+opt(2) = y;
 %%
 if fail_flag > 0
     U(fail_flag) = 0;

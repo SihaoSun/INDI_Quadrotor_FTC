@@ -1,4 +1,4 @@
-function [x,y_state,iter,optimal] = QP_activeSet(H,c,A,b,x0,maxItr)
+function [x,y_state,iter,optimal,y] = QP_activeSet(H,c,A,b,x0,maxItr)
 % @ info: solve quadratic programming in the form of
 %           min 0.5*x'Hx + c'x
 %               st Ax <= b
@@ -9,7 +9,7 @@ function [x,y_state,iter,optimal] = QP_activeSet(H,c,A,b,x0,maxItr)
 %           y_state: indicating if x is on the boundary (1) or not (0)
 %           iter: num of iterations
 %           optimal: convergent(1) or not (0)
-%
+%           y: cost function value
 % This active set algorithm is developed based on the video
 % https://www.youtube.com/watch?v=HLq151AhMMY (35:00)
 % The constraint which is violated is added into the active set.
@@ -27,6 +27,7 @@ y_state(constraint>=0) = 1;
 iter = 0;
 x = x0;
 optimal = 0;
+
 for k = 1:maxItr
     x_k = x;
     iter = iter+1;
@@ -54,7 +55,7 @@ for k = 1:maxItr
 %     end
     d_k = d_xy(1:n);
     
-    if norm(d_k) < 0.0001
+    if norm(d_k) < 1e-6
         % if searching distance is zero, check co-state to determine if
         % eliminate the corresponding constraint from the active set. Or check the constraint
         % to determine if add the corresponding constraint into the active
@@ -74,6 +75,7 @@ for k = 1:maxItr
         if constraintOK && yMultipOK
             % all co-state are possitive, prolem solved
             optimal = 1;
+            y = 0.5*x'*H*x + c'*x;
             return;
         else
             if isempty(y) || min(y) >= -0.0001
@@ -115,4 +117,5 @@ for k = 1:maxItr
         end        
     end
 end
+y = 0;
 end

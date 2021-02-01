@@ -106,6 +106,7 @@ dummy.uv_max = [0;0];
 dummy.uv_min = [0;0];
 dummy.vel_ref = [0;0;0];
 dummy.pos_ref = [0;0;0];
+dummy.t = 0;
 
 Simulink.Bus.createObject(dummy); 
 stateBus = slBus1; clearvars slBus1;

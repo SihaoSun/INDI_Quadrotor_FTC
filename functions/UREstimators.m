@@ -1,4 +1,6 @@
-function [state] = UREstimators(sensors, fail_id, state)
+function [state] = UREstimators(sensors, fail_id, state,t)
+
+state.t = t;
 
 state.acc = sensors.acc;
 state.vel = sensors.vel;

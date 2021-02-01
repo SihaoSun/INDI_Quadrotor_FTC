@@ -178,7 +178,7 @@ ylabel('y [m]')
 zlabel('z [m]')
 grid on;
 
-view([-30 15]); %30
+view([-30 30]); %30
 % axis(limits);% tight equal
 lighting flat%gouraud
     
