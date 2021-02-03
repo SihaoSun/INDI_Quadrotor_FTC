@@ -10,7 +10,7 @@ simVars.pos0 = [0,0,0];     % initial position, [m]
 simVars.vel0 = [0,0,0];     % initial velocity, [m/s]
 simVars.att0 = [0,0,0];     % initial roll / pitch / yaw, [rad]
 simVars.q0 = eul2quat(flip(simVars.att0),'ZYX');
-simVars.omega0 = [0, 0, 20]; % initial body rate, [rad/s]
+simVars.omega0 = [0, 0, 0]; % initial body rate, [rad/s]
 simVars.actuator.w0 = [720; 720; 720; 720];
                             % initial propeller speeds
 
@@ -34,7 +34,9 @@ simVars.visFreq = 50;   % visualization frequency
 simVars.track = true;   % track the quadrotor for visualization?
 
 % drone related parameters for simulation
-loadedParams = load('Bebop2_guido_parameters.mat');
+% loadedParams = load('Bebop2_guido_parameters.mat');
+loadedParams = load('Hummingbird_hybrid.mat');
+
 simVars.drone.Iv = loadedParams.parameters.Iv;
 simVars.drone.Ip = loadedParams.parameters.Ip;
 simVars.drone.signr = -1;
@@ -47,7 +49,7 @@ simVars.drone.mass = loadedParams.parameters.m;
 simVars.actuator.t_w = 1/30;        %  actuator time constant [s]
 simVars.actuator.rateRise = 5e4;    %  actuator rate limit [rad/s^2]
 simVars.actuator.rateFall = -5e4;
-simVars.actuator.wMax = 1200;       %  max/min propeller rotation rates, [rad/s] 
+simVars.actuator.wMax = 5000;       %  max/min propeller rotation rates, [rad/s] 
 simVars.actuator.wMin = 0;
 
 % params for simplex aerodynamic model

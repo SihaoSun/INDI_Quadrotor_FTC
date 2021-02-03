@@ -10,6 +10,7 @@ FMax = ones(4,1) * par.w_max^2 * par.k0;
 FMin = ones(4,1) * par.w_min^2 * par.k0;
 if fail_flag > 0
     FMax(fail_flag) = FMin(fail_flag);
+    par.qp.nurGain = 0;
 end
 
 dFMax = FMax - F_prev;
@@ -20,7 +21,7 @@ refStruct.nu1 = nu(2) - ddY(1);
 refStruct.nu2 = nu(3) - ddY(2);
 refStruct.nur = nu(4) - rdot;
 
-[x,~,~,optimal,y] = controlAllocQPpredictor(refStruct, state, dFMax, dFMin, h0, par);
+[x,~,~,optimal,y] = controlAllocQPpredictor(refStruct, state, dFMax, dFMin, h0, U0 * par.k0, par);
 
 if optimal % if the solution did not converge, use previous solution
     dU = x / par.k0;

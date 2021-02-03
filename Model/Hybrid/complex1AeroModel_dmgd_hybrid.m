@@ -14,7 +14,7 @@ R_IB = [cos(psi)*cos(theta) , cos(psi)*sin(theta)*sin(phi)-sin(psi)*cos(phi), co
 V_aero = R_IB \([wind.x, wind.y, wind.z]' + [simBusIn.vel(1), simBusIn.vel(2) simBusIn.vel(3)]');
 
 [F,M] = FM_BB2_6DOF(V_aero,simBusIn.omegaB',wRotor,sim.drone);
-[Fw, Mw, alpha_r, alpha_l] = F_M_wing_V2(V_aero', simBusIn.omegaB, simBusIn.delta_ar, simBusIn.delta_al);
+[Fw, Mw, alpha_r, alpha_l] = F_M_wing_swept(V_aero', simBusIn.omegaB, simBusIn.delta_ar, simBusIn.delta_al);
 
 F = F + Fw; M = M + Mw;
 % 

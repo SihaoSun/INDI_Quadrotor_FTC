@@ -1,7 +1,7 @@
 % run this script after runing a simulation to compare FM with / without
 % wings
 
-load('parameters.mat');
+load('parameters_swept.mat');
 time = att.Time;
 N = length(time);
 

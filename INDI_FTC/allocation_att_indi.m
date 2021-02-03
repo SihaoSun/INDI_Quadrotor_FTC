@@ -12,11 +12,6 @@ Ix = par.Ix;
 Iy = par.Iy;
 Iz = par.Iz;
 beta = atan(par.b/par.l);
-chi = par.chi/57.3;
-
-if state.fail_id == 1 || state.fail_id == 3
-    chi = pi- par.chi/57.3;
-end
 
 h1 = h0(1); h2 = h0(2); h3 = h0(3);
 
@@ -30,10 +25,8 @@ G0 = [-k/m*cos(theta)*cos(phi)*ones(1,4);
      h3*Gp - h1*Gr;
      Gr];
 
-R = blkdiag(1,[cos(chi), sin(chi); -sin(chi), cos(chi)],1);
-
 ddy0 = [zdd; ddY; rdot];
-G = R*G0;
+G = G0;
  
 if par.DRF_enable && fail_flag>0
     if fail_flag == 1 || fail_flag == 3

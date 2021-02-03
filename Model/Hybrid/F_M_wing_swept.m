@@ -1,11 +1,11 @@
-function [F_tot,M_tot,alpha_r,alpha_l] = F_M_wing_V2(V,omega,delta_ar,delta_al)
+function [F_tot,M_tot,alpha_r,alpha_l] = F_M_wing_swept(V,omega,delta_ar,delta_al)
 
 % load parameters r_r r_l install n 
 
 persistent r_r r_l install n rho Si c;
 
 if isempty(r_r)
-    dummy = load('parameters.mat');
+    dummy = load('parameters_swept.mat');
     r_r = dummy.r_r;
     r_l = dummy.r_l;
     install = dummy.install;
@@ -47,8 +47,15 @@ L_delta_ar =  zeros(1,n);
 for i = 1:1:n
     V_r(:,i) = cross(omega,r_r(:,i)) + V;
     qyn_r(i) = 0.5*rho*(V_r(:,i)'*V_r(:,i));
-%     alpha_r(i) = atan(V_r(3,i)/V_r(1,i)) + install;
-    alpha_r(i) = atan(V_r(3,i)/sqrt(V_r(1,i)^2+V_r(2,i)^2)) + install;
+    
+    alpha_r(i) = asin(V_r(3,i)/norm(V_r,2)) + install;
+    if alpha_r(i)> 15/57.3
+        alpha_r(i) = 15/57.3;
+    else if alpha_r(i)< -15/57.3
+            alpha_r(i) = -15/57.3;
+        end
+    end
+    
     if V_r(1,i) > 0  % from front
         flag = 1; % from front
     else 
@@ -59,21 +66,21 @@ for i = 1:1:n
     
 %     C_l_delta_ar(i) = (C_yr(i)/alpha_r(i))*0.3;
     
-    L_delta_ar(i) =  qyn_r(i)*Si*C_l_delta_ar(i)*delta_ar_all(i);
-    X_r(i) = qyn_r(i)*Si*C_xr(i);
-    Y_r(i) = qyn_r(i)*Si*C_yr(i) + L_delta_ar(i);
+    L_delta_ar(i) =  qyn_r(i)*Si(i)*C_l_delta_ar(i)*delta_ar_all(i);
+    X_r(i) = qyn_r(i)*Si(i)*C_xr(i);
+    Y_r(i) = qyn_r(i)*Si(i)*C_yr(i) + L_delta_ar(i);
     f_ri(:,i) =  [-Y_r(i)*sin(install) - X_r(i)*cos(install);
                   0;
                   -Y_r(i)*cos(install) + X_r(i)*sin(install)];  % in the body frame
-    M_ri(:,i) =  [0, -qyn_r(i)*Si*c*C_mr(i), 0]' + cross(r_r(:,i),f_ri(:,i))...
-         + [0, -L_delta_ar(i)*0.3*c, 0]';
+    M_ri(:,i) =  [0, -qyn_r(i)*Si(i)*c(i)*C_mr(i), 0]' + cross(r_r(:,i),f_ri(:,i))...
+         + [0, -L_delta_ar(i)*0.3*c(i), 0]';
      
 end
 
 F_r = [sum(f_ri(1,:)); sum(f_ri(2,:)); sum(f_ri(3,:))];
-M_r = [sum(M_ri(1,:)); sum(M_ri(2,:)); sum(M_ri(3,:))] ;
+M_r = [sum(M_ri(1,:)); sum(M_ri(2,:)); sum(M_ri(3,:))];
 
-% ================the left wing========
+% ================the left wing=============
 V_l = zeros(3,n);
 qyn_l = zeros(1,n);
 alpha_l = zeros(1,n);
@@ -90,8 +97,14 @@ L_delta_al =  zeros(1,n);
 for i = 1:1:n
     V_l(:,i) = cross(omega,r_l(:,i)) + V;
     qyn_l(i) = 0.5*rho*(V_l(:,i)'*V_l(:,i));
-%     alpha_l(i) = atan(V_l(3,i)/V_l(1,i)) + install;
-    alpha_l(i) = atan(V_l(3,i)/sqrt(V_l(1,i)^2+V_l(2,i)^2)) + install;
+    
+    alpha_l(i) = asin(V_l(3,i)/norm(V_l,2)) + install;
+    if alpha_l(i)> 15/57.3
+        alpha_l(i) = 15/57.3;
+    else if alpha_l(i)< -15/57.3
+            alpha_l(i) = -15/57.3;
+        end
+    end
     
     if V_l(1,i) > 0  % from front
         flag = 1; % from front
@@ -103,15 +116,15 @@ for i = 1:1:n
     
 %     C_l_delta_al(i) = (C_yl(i)/alpha_l(i))*0.3;
     
-    L_delta_al(i) =  qyn_l(i)*Si*C_l_delta_al(i)*delta_al_all(i);
+    L_delta_al(i) =  qyn_l(i)*Si(i)*C_l_delta_al(i)*delta_al_all(i);
     
-    X_l(i) = qyn_l(i)*Si*C_xl(i);
-    Y_l(i) = qyn_l(i)*Si*C_yl(i) + L_delta_al(i);
+    X_l(i) = qyn_l(i)*Si(i)*C_xl(i);
+    Y_l(i) = qyn_l(i)*Si(i)*C_yl(i) + L_delta_al(i);
     f_li(:,i) =  [-Y_l(i)*sin(install) - X_l(i)*cos(install);
                   0;
                   -Y_l(i)*cos(install) + X_l(i)*sin(install)];  % in the body frame
-    M_li(:,i) =  [0, -qyn_l(i)*Si*c*C_ml(i), 0]' + cross(r_l(:,i),f_li(:,i)) ...
-            + [0, -L_delta_al(i)*0.3*c, 0]';
+    M_li(:,i) =  [0, -qyn_l(i)*Si(i)*c(i)*C_ml(i), 0]' + cross(r_l(:,i),f_li(:,i)) ...
+            + [0, -L_delta_al(i)*0.3*c(i), 0]';
 end
 
 F_l = [sum(f_li(1,:)); sum(f_li(2,:)); sum(f_li(3,:))];
@@ -120,6 +133,5 @@ M_l = [sum(M_li(1,:)); sum(M_li(2,:)); sum(M_li(3,:))] ;
 % ----------sum  ------
 F_tot = F_r + F_l;
 M_tot = M_r + M_l;
-
 end
 

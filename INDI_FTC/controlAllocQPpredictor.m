@@ -1,4 +1,4 @@
-function [output,y_state,iter,opt,y] = controlAllocQPpredictor(refStruct, state, FMax, FMin, h0, par)
+function [output,y_state,iter,opt,y] = controlAllocQPpredictor(refStruct, state, FMax, FMin, h0, F0, par)
 persistent x_last;
 
 y_state = zeros(1,4);
@@ -63,7 +63,7 @@ G0 = [par.b/Ix, 0;
       0, par.l/Iy] * [1 -1 -1 1; 1 1 -1 -1];
 switch fail_id
     case 1
-        Q0 = [0 1]*R_xy_uv*[x1;x2] + omega_max; % R_uv_xy different from Matthias definition?
+        Q0 = [0 1]*R_xy_uv*[x1;x2] + omega_max;
         Q1 = -[0 1]*R_xy_uv*PHI*G0;
     case 2
         Q0 = -[1 0]*R_xy_uv*[x1;x2] + omega_max;
@@ -78,6 +78,7 @@ switch fail_id
         Q0 = 10000;
         Q1 = ones(1,4);
 end
+Q0 = Q0 - Q1*F0;
 
 umax = [FMax(1),FMax(2),FMax(3),FMax(4)]';
 umin = [FMin(1),FMin(2),FMin(3),FMin(4)]';
@@ -118,12 +119,12 @@ B = [umax;
  
 x0 = x_last;
 maxItr = par.qp.maxIter;
-[x,~,iter,opt,y] = QP_activeSet(H,f,A,B,x0,maxItr);
+% [x,~,iter,opt,y] = QP_activeSet(H,f,A,B,x0,maxItr);
 
 %% matlab quadprog
-% options = optimoptions('quadprog','Algorithm','active-set');
-% [x,y,opt,output] = quadprog(H,f,A,B,[],[],[],[],x0,options);
-% iter = output.iterations;
+options = optimoptions('quadprog','Algorithm','active-set');
+[x,y,opt,output] = quadprog(H,f,A,B,[],[],[],[],x0,options);
+iter = output.iterations;
 %%
 y = nu1^2 * nu1Gain + nu2^2*nu2Gain + nuz^2*nuzGain + y;
 

@@ -100,10 +100,10 @@ Ct02 = P52CtCq(alpha2,vv2)*aero_model.k_Ct0;
 Ct03 = P52CtCq(alpha3,vv3)*aero_model.k_Ct0;
 Ct04 = P52CtCq(alpha4,vv4)*aero_model.k_Ct0;
 
-Cq01 = P52CtCq(alpha1,vv1)*aero_model.k_Cq0;
-Cq02 = P52CtCq(alpha2,vv2)*aero_model.k_Cq0;
-Cq03 = P52CtCq(alpha3,vv3)*aero_model.k_Cq0;
-Cq04 = P52CtCq(alpha4,vv4)*aero_model.k_Cq0;
+Cq01 = P52CtCq(alpha1,vv1)*aero_model.k_Cq0*2;
+Cq02 = P52CtCq(alpha2,vv2)*aero_model.k_Cq0*2;
+Cq03 = P52CtCq(alpha3,vv3)*aero_model.k_Cq0*2;
+Cq04 = P52CtCq(alpha4,vv4)*aero_model.k_Cq0*2;
 
 %% Forces and moments of airframe
 T0 = -P1n(abs(w_bar),2,0,va.^2*S*1.225/2.*sign(w_bar))*aero_model.k_model{1};
