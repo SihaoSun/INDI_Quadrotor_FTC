@@ -5,7 +5,7 @@ par.lqr.Iu = sqrt(par.Ix^2 + par.Iy^2);
 par.lqr.Iv = sqrt(par.Ix^2 + par.Iy^2);
 par.lqr.s  = sqrt(par.l^2 + par.b^2);
 
-par.lqr.Q = diag([0, 0, 2, 2, 0.0, 0.0]); 
+par.lqr.Q = diag([0, 0, 10, 10, 0.0, 0.0]); 
 par.lqr.R = eye(2);
 
 par.lqr.K_lqr0 = calc_lqr(par,0,0);
