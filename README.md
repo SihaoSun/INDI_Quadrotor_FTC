@@ -14,15 +14,16 @@ This is a minimal repository containing the Matlab / Simulink file, to simulate 
 
 If you use this code in an academic context, please cite
 ```
-@ARTICLE{SunDRF2020,
-  author={S. {Sun} and X. {Wang} and Q. {Chu} and C. d. {Visser}},
-  journal={IEEE Transactions on Robotics}, 
-  title={Incremental Nonlinear Fault-Tolerant Control of a Quadrotor With Complete Loss of Two Opposing Rotors}, 
+@article{sun2020incremental,
+  title={Incremental nonlinear fault-tolerant control of a quadrotor with complete loss of two opposing rotors},
+  author={Sun, Sihao and Wang, Xuerui and Chu, Qiping and de Visser, Coen},
+  journal={IEEE Transactions on Robotics},
+  volume={37},
+  number={1},
+  pages={116--130},
   year={2020},
-  volume={},
-  number={},
-  pages={1-15},
-  doi={10.1109/TRO.2020.3010626}}
+  publisher={IEEE}
+}
 ```
 
 ## File structure
