@@ -1,7 +1,7 @@
 %% Simulation parameters
 
-simVars.freq = 400;        % simulation frequency
-simVars.aeroModel = 2;      % aerodynamic model 
+simVars.freq = 500;        % simulation frequency
+simVars.aeroModel = 0;      % aerodynamic model 
                             % 0 = simple aero model, 1 = complex model
                             % 2 = hybrid aero model
                             
@@ -10,7 +10,7 @@ simVars.pos0 = [0,0,0];     % initial position, [m]
 simVars.vel0 = [0,0,0];     % initial velocity, [m/s]
 simVars.att0 = [0,0,0];     % initial roll / pitch / yaw, [rad]
 simVars.q0 = eul2quat(flip(simVars.att0),'ZYX');
-simVars.omega0 = [0, 0, 20]; % initial body rate, [rad/s]
+simVars.omega0 = [0, 0, 0]; % initial body rate, [rad/s]
 simVars.actuator.w0 = [720; 720; 720; 720];
                             % initial propeller speeds
 

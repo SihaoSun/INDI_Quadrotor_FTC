@@ -1,6 +1,6 @@
 %% Controller related Parameters
 % Controls
-par.freq = 200; % control frequency
+par.freq = 500; % control frequency
 
 %
 %   (1)<--2b -->(2)
@@ -10,10 +10,10 @@ par.freq = 200; % control frequency
 %      /       \ v
 %   (4)         (3)
 
-par.fail_id = [2];      % index of the failured propeller
+par.fail_id = [4];      % index of the failured propeller
 par.DRF_enable = 0;     % failure of two diagonal rotors?
-par.fail_time = 0.0;    % moment failiure occurs
-par.allocType = 2;
+par.fail_time = 0.5;    % moment failiure occurs
+par.allocType = 1;
 
 % drone parameters
 par.b = 0.1150;     % [m]

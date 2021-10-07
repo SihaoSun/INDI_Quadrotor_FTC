@@ -1,6 +1,10 @@
-function FM = aeroModel(simBusIn, wRotor_dot, wRotor, wind, simVars)
+function FM = aeroModel(simBusIn, wRotor_dot, wRotor, wind, simVars, failure_id)
 
 %% Calculate some other vars
+if failure_id~=0
+    wRotor(failure_id) = 0.0;
+end
+
 M_gyro = simVars.drone.signr*(simVars.drone.Ip*[0 0 wRotor_dot(1)]'+ simVars.drone.Ip*[0 0 -wRotor_dot(2)]'+ simVars.drone.Ip*[0 0 wRotor_dot(3)]'+ simVars.drone.Ip*[0 0 -wRotor_dot(4)]'...
          + cross(simBusIn.omegaB',simVars.drone.Ip*[0 0 wRotor(1)]'+simVars.drone.Ip*[0 0 -wRotor(2)]'+simVars.drone.Ip*[0 0 wRotor(3)]'+simVars.drone.Ip*[0 0 -wRotor(4)]'));
 
