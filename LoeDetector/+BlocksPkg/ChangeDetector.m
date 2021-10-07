@@ -12,7 +12,7 @@ classdef ChangeDetector < BlocksPkg.Block
         end
         
         function [changed, cur_value, prev_value] = step(obj, value)
-            if value ~= obj.prev_value
+            if value ~= obj.prev_value && obj.prev_value~=-1
                 changed = true;
             else
                 changed = false;

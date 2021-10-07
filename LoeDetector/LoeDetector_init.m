@@ -2,7 +2,7 @@ clear loeDetectorParams LoeDetectorParams
 
 LoeDetectorPkg.init
 
-loeDetectorParams.fdd_k_thres = 0.5;
+loeDetectorParams.fdd_k_thres = 0.25;
 loeDetectorParams.fdd_fail_p_thres = 0.9;
 loeDetectorParams.fdd_on = 1;
 
