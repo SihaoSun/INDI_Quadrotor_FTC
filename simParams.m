@@ -14,15 +14,13 @@ simVars.actuator.w0 = [720; 720; 720; 720];
 
 % Sensor noise
 add_noise = 1;              % add sensor noise?
-simVars.accNoise = add_noise*50; 
-simVars.rotAccNoise = add_noise*1000;
 
 simVars.sensor.posNoise = add_noise*[1,1,1]*1e-8;
 simVars.sensor.velNoise = add_noise*[1,1,1]*1e-8;
 simVars.sensor.accNoise = add_noise*[1,1,1]*1e-3;
 simVars.sensor.attNoise = add_noise*[1,1,1]*1e-8;
 simVars.sensor.omegaNoise = add_noise*[1,1,1]*2e-4;
-simVars.sensor.wRotorNoise = add_noise*[1,1,1,1]*0;
+simVars.sensor.wRotorNoise = add_noise*[1,1,1,1]*1e-5;
 
 simVars.sensor.omega_bias = add_noise*[0.0, 0.0, 0.0];
 simVars.sensor.acc_bias = add_noise*[0.0,-0.0,0.0];
@@ -51,5 +49,4 @@ simVars.actuator.wMin = 0;
 % params for simplex aerodynamic model
 simVars.aero.k0 = 1.9035e-6.*ones(1,4); % propeller thrust coefficient
 simVars.aero.t0 = 1.9202951e-8;         % propeller drag coefficient
-simVars.aero.dr = -1.918988e-3;         % quadrotor yaw damping [Nm.s]
-simVars.aero.rotDrag = [1e-4, 1e-4, 1e-4];  % quadrotor rotation damping [Nm.s]
+simVars.aero.rotDrag = [5e-5, 5e-5, 1e-4];  % quadrotor rotation damping [Nm.s]

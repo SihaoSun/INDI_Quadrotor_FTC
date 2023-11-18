@@ -2,14 +2,12 @@ function [simBusOut, x_dot] = EOMQuat(FM,wRotor,wRotor_meas,x,sim)
 
 pos = x(1:3)';
 vel = x(4:6)';
-q = x(7:10)';
-q = quatnormalize(q);
-
 rotVelB = x(11:13)';
 att = x(14:16);
 phi = att(1); theta = att(2); psi = att(3);
 
 R = eul2rotm([psi, theta, phi]);
+q = rotm2quat(R);
 %% Info
 % z-axis points downwards
 % rotations following right hand rule

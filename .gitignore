@@ -1,4 +1,5 @@
 
 *.slxc
-
+*.asv
+*.r202*
 **/slprj

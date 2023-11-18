@@ -30,8 +30,8 @@ par.w_min = 0;
 
 %% INDI reduced att control
 par.chi = 105;          % output scheduling parameter, [deg].
-par.pos_z_p_gain = 5;   % altitude control pd gains
-par.pos_z_d_gain = 3;
+par.pos_z_p_gain = 10;   % altitude control pd gains
+par.pos_z_d_gain = 6;
 par.axis_tilt = 0.0;    % primary axis tilting param, 0 ~ 0.2,  
                         % must be 0 for double rotor failure cases
 
@@ -44,9 +44,9 @@ par.YRC_Kp_r = 5.0;
 par.YRC_Kp_psi = 5.0;
 
 % position control
-par.position_maxAngle = 30/57.3;    % maximum thrust tilt angle [rad]  
-par.position_Kp_pos = [1.5, 1.5, 1.5];  % position control gains
+par.position_maxAngle = 10/57.3;    % maximum thrust tilt angle [rad]  
+par.position_Kp_pos = [1.0, 1.0, par.pos_z_p_gain];  % position control gains
 par.position_maxVel = 10;           % maximum velocity
 par.position_intLim = 5.0; 
-par.position_Ki_vel = [1.0, 1.0, 1.0];  % velocity gains
-par.position_Kp_vel = [2.0, 2.0, 2.0];
+par.position_Ki_vel = [0.0, 0.0, 0.0];  % velocity gains
+par.position_Kp_vel = [2.0, 2.0, par.pos_z_d_gain];

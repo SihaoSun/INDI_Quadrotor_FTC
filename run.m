@@ -12,6 +12,6 @@ controlParams;
 %% sim
 createAllBusses;
 
-simulation_period = 10.0;
+simulation_period = 20.0;
 
 sim('frame.slx',simulation_period);
